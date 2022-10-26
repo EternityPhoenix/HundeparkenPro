@@ -1,0 +1,25 @@
+{
+  "name": "hundeparkenpro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node src/index.js",
+    "debug": "node --inspect-brk src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EternityPhoenix/HundeparkenPro.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EternityPhoenix/HundeparkenPro/issues"
+  },
+  "homepage": "https://github.com/EternityPhoenix/HundeparkenPro#readme",
+  "dependencies": {
+    "node-fetch": "^3.2.10",
+    "puppeteer": "^19.1.1"
+  }
+}
