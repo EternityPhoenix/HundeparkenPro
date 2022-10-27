@@ -5,10 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node src/index.js",
-    "test": "concurrently \"npm run start\" \"npm run watch-bundle-payload\" ",
-    "watch-bundle-payload": "esbuild ./src/payload/index.ts --minify --sourcemap --target=chrome58 --watch --bundle --outfile=./src/payload.js",
-    "debug": "node --inspect-brk src/index.js"
+    "start": "concurrently \"npm run start:ui\" \"npm run start:payload\" ",
+    "start:ui": "node src/index.js",
+    "start:ui:brk": "node --inspect-brk src/index.js",
+    "start:payload": "esbuild ./src/payload/index.ts --minify --sourcemap --target=chrome58 --watch --bundle --outfile=./src/payload.js"
   },
   "repository": {
     "type": "git",
