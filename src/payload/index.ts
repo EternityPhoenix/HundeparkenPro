@@ -1,5 +1,5 @@
-import { getScope } from "./scope";
+import { onParkLoaded } from "./scope/utilities";
 
-const scope = getScope();
-setTimeout(() => alert(scope.state.users.length), 5000);
-debugger;
+onParkLoaded(scope => {
+    alert("Users in room " + scope.state.users.length)
+});

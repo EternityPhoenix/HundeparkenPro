@@ -1,6 +1,6 @@
 ## Objectives
 - Figure out numerous entries for other classes.
-- Make interfaces for classes.
+- Make interfaces for system [__IN PROGRESS__].
   
 ## Possible improvements
   - Plugin support

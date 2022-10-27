@@ -2,6 +2,21 @@ import fetch from "node-fetch";
 import fs from "fs";
 import { saveCookies } from "./cookies.js";
 
+async function analyzeCode(code)
+{
+  let mappings = {
+    serverFunctions: null
+  };
+
+  if (code.includes("['placeProfilePoop']")) {
+    mappings.serverFunctions = code.split("['placeProfilePoop']")[0].split("(");
+    mappings.serverFunctions = mappings.serverFunctions[mappings.serverFunctions.length - 1];
+  }
+
+  fs.writeFileSync('./src/payload/scope/mappings.ts', `export const mappings = ${JSON.stringify(mappings)};`);
+  await new Promise(resolve => setTimeout(resolve, 500));
+}
+
 async function tryInject(data, page) {
   const injectionData = fs.readFileSync("./src/payload.js", "utf8");
   const entries = [`(window['debug']`];
@@ -9,10 +24,10 @@ async function tryInject(data, page) {
   if (data.includes(entries[0])) {
     await saveCookies(page);
     const parts = data.split(entries[0]);
-    console.log("Found entry");
     const formattedData = `(()=>{
           ${injectionData}
           })()`;
+    await analyzeCode(data);
     return `${parts[0]} (window.test=1),  ${formattedData}, ${entries[0]}${parts[1]}`;
   }
 
