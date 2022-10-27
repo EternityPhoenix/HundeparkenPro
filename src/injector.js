@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 import fs from "fs";
-import { saveCookies } from "./cookies";
+import { saveCookies } from "./cookies.js";
 
 async function tryInject(data, page) {
   const injectionData = fs.readFileSync("./src/payload.js", "utf8");
@@ -9,7 +9,7 @@ async function tryInject(data, page) {
   if (data.includes(entries[0])) {
     await saveCookies(page);
     const parts = data.split(entries[0]);
-    console.log("Found entry!!");
+    console.log("Found entry");
     const formattedData = `(()=>{
           ${injectionData}
           })()`;
@@ -31,9 +31,8 @@ export async function inject(page) {
       interceptedRequest.abort();
     } else if (url.includes(".js") && url.includes("h5/game/")) {
       const data = await fetch(url).then((d) => d.text());
-      console.log("Trying", url);
       interceptedRequest.respond({
-        body: tryInject(data, page),
+        body: await tryInject(data, page),
         contentType: "application/javascript",
       });
     } else {
