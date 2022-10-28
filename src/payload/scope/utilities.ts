@@ -1,8 +1,8 @@
 import { getScope } from ".";
 
 export function onParkLoaded(callback: (scope: ReturnType<typeof getScope>) => void) {
-    const scope = getScope();
     const loadedCheck = () => {
+        const scope = getScope();
         if (scope.state.currentRoom)
         {
             callback(scope);

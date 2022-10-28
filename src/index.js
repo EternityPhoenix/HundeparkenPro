@@ -1,9 +1,11 @@
 import puppeteer from 'puppeteer';
 import { inject } from './injector.js';
 import { restoreCookie } from './cookies.js';
+import { resetPluginIndex } from './plugins.js';
 
 
 (async () => {
+  resetPluginIndex();
   const browser = await puppeteer.launch({
     headless: false,
     defaultViewport: null,

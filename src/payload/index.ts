@@ -1,5 +1,3 @@
-import { onParkLoaded } from "./scope/utilities";
+import * as plugins from "./plugins";
 
-onParkLoaded(scope => {
-    alert("Users in room " + scope.state.users.length)
-});
+console.log("Plugins", plugins)

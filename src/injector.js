@@ -1,6 +1,7 @@
 import fetch from "node-fetch";
 import fs from "fs";
 import { saveCookies } from "./cookies.js";
+import { generatePluginIndex } from "./plugins.js";
 
 async function analyzeCode(code)
 {
@@ -45,6 +46,7 @@ export async function inject(page) {
     if (url.endsWith("scripts/serviceworker.js")) {
       interceptedRequest.abort();
     } else if (url.includes(".js") && url.includes("h5/game/")) {
+      generatePluginIndex();
       const data = await fetch(url).then((d) => d.text());
       interceptedRequest.respond({
         body: await tryInject(data, page),

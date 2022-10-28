@@ -32,6 +32,11 @@ interface Communication {
     on: (a: unknown, b: CommunicationFunc, c: boolean) => unknown;
 }
 
+export interface pixiContainer {
+    children: any[];
+    addChild: (child: any) => void;
+}
+
 interface SharedUI {
     background: unknown;
     peeDisplay: unknown;
@@ -43,13 +48,13 @@ interface SharedUI {
     userDisplay: unknown;
     ownUserDisplay: unknown;
     warpMap: unknown;
-    mainContainer: unknown;
-    backgroundContainer: unknown;
-    uiContainer: unknown;
-    sleepContainer: unknown;
-    windowContainer: unknown;
-    eventContainer: unknown;
-    loadscreenContainer: unknown;
+    mainContainer: pixiContainer;
+    backgroundContainer: pixiContainer;
+    uiContainer: pixiContainer;
+    sleepContainer: pixiContainer;
+    windowContainer: pixiContainer;
+    eventContainer: pixiContainer;
+    loadscreenContainer: pixiContainer;
     infoBar: unknown;
     controlButtons: unknown;
     inventory: unknown;
