@@ -3,7 +3,7 @@ import { onParkLoaded } from "../../scope/utilities";
 onParkLoaded(scope => {
     if(!scope.classes.window || !scope.classes.button)
     {
-        return;
+        throw new Error("Missing classes")
     }
 
     const window = new scope.classes.window(200, 100, 0xefefef, false, true);

@@ -18,6 +18,13 @@ export interface State {
     currentRoom?: CurrentRoom;
     sharedUI?: SharedUI;
 
+    shop?: Shop;
+
+}
+
+interface Shop {
+    id: number
+    itemContainer: pixiContainer
 }
 
 interface Connection {

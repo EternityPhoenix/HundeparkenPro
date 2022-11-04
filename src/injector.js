@@ -12,6 +12,11 @@ async function analyzeCode(code)
   if (code.includes("['placeProfilePoop']")) {
     mappings.serverFunctions = code.split("['placeProfilePoop']")[0].split("(");
     mappings.serverFunctions = mappings.serverFunctions[mappings.serverFunctions.length - 1];
+  }else if (code.includes("['profile_praise']")) {
+    mappings.serverFunctions = code.split("['profile_praise']")[0].split(",");
+    mappings.serverFunctions = mappings.serverFunctions[mappings.serverFunctions.length - 1];
+  }else{
+    console.error("No entry for `serverFunctions` found")
   }
 
   fs.writeFileSync('./src/payload/scope/mappings.ts', `export const mappings = ${JSON.stringify(mappings)};`);
